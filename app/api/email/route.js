@@ -2,8 +2,7 @@ import { ConnectDB } from "@/lib/config/db";
 import EmailModel from "@/lib/models/EmailModel";
 import { NextResponse } from "next/server";
 
-  await ConnectDB();
-};
+await ConnectDB();
 
 LoadDB();
 export async function POST(request) {
@@ -21,6 +20,6 @@ export async function GET(request) {
 }
 export async function DELETE(request) {
   const id = await request.nextUrl.searchParams.get("id");
-  await EmailModel.findByIdAndDelete(id)
-  return NextResponse.json({success:true, msg:'Email Deleted'})
+  await EmailModel.findByIdAndDelete(id);
+  return NextResponse.json({ success: true, msg: "Email Deleted" });
 }
