@@ -4,25 +4,30 @@ import BlogItem from "./BlogItem";
 import axios from "axios";
 const BlogList = ({ title, description }) => {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [menu, setMenu] = useState("All");
   const options = ["All", "Technology", "Startup", "Lifestyle"];
 
   const fetchBlogs = async () => {
     try {
+      setLoading(true);
       const response = await axios.get("/api/blog");
       console.log(response); // Inspect the entire response
       setBlogs(response.data.blogs);
     } catch (error) {
       console.error("Error fetching blogs:", error);
+    } finally {
+      setLoading(false);
     }
   };
-  
 
   useEffect(() => {
     fetchBlogs();
   }, []);
 
-  return (
+  return loading ? (
+    <h1 className='text-4xl text-center'>Loading Blogs...</h1>
+  ) : (
     <div>
       <div className=" flex justify-center gap-6 my-10">
         {options.map((button, index) => {
