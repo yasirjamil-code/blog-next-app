@@ -28,7 +28,7 @@ const BlogList = ({ title, description }) => {
     <h1 className='text-4xl text-center'>Loading Blogs...</h1>
   ) : (
     <div>
-      <div className=" flex justify-center gap-6 my-10">
+      <div className="flex justify-center gap-6 my-10">
         {options.map((button, index) => {
           return (
             <button
